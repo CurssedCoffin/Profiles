@@ -1,0 +1,207 @@
+mode: rule
+log-level: warning # 日志等级 silent/error/warning/info/debug
+ipv6: false # 开启 IPv6 总开关，关闭阻断所有 IPv6 链接和屏蔽 DNS 请求 AAAA 记录
+external-controller: 0.0.0.0:9090 # RESTful API 监听地址
+secret: "" # `Authorization:Bearer ${secret}`
+
+mixed-port: 7890 # HTTP(S) 和 SOCKS 代理混合端口
+redir-port: 7891 # 透明代理端口，用于 Linux 和 MacOS
+tproxy-port: 7892 # Transparent proxy server port for Linux (TProxy TCP and TProxy UDP)
+port: 7893
+socks-port: 7894
+
+external-ui: ui
+external-ui-name: metacubexd
+external-ui-url: "https://mirror.ghproxy.com/https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
+
+unified-delay: true # 统一延迟
+tcp-concurrent: false # TCP 并发
+
+#自定义 geodata url
+geodata-mode: true
+geox-url:
+  geoip: "https://mirror.ghproxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.dat"
+  geosite: "https://mirror.ghproxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat"
+geo-auto-update: false # 是否自动更新 geodata
+geo-update-interval: 24 # 更新间隔，单位：小时
+
+allow-lan: true # 允许局域网连接
+bind-address: "*" # 绑定 IP 地址，仅作用于 allow-lan 为 true，'*'表示所有地址
+
+#  find-process-mode has 3 values:always, strict, off
+#  - always, 开启，强制匹配所有进程
+#  - strict, 默认，由 mihomo 判断是否开启
+#  - off, 不匹配进程，推荐在路由器上使用此模式
+find-process-mode: "off"
+
+profile: 
+  store-selected: true # 存储 select 选择记录
+  # store-fake-ip: false # 持久化 fake-ip
+
+sniffer:
+  enable: true
+  parse-pure-ip: true
+  force-dns-mapping: true
+  override-destination: false
+  sniff:
+    HTTP:
+      ports:
+        - 80
+        - 443
+      override-destination: false
+    TLS:
+      ports:
+        - 443
+    QUIC:
+      ports:
+        - 443
+  skip-domain:
+    - +.push.apple.com
+
+tun:
+  enable: true
+  stack: mixed # gvisor/mixed
+  device: tun
+  dns-hijack:
+    - tcp://any:53
+    # - any:53 # 需要劫持的 DNS
+  auto-detect-interface: true # 自动识别出口网卡
+  auto-route: false # 配置路由表
+  auto-redirect: false # 自动配置 iptables 以重定向 TCP 连接。仅支持 Linux。带有 auto-redirect 的 auto-route 现在可以在路由器上按预期工作，无需干预。
+
+  endpoint-independent-nat: true # 启用独立于端点的 NAT
+  # include-interface: # 限制被路由的接口。默认不限制，与 `exclude-interface` 冲突
+  #   - "lan0"
+  # exclude-interface: # 排除路由的接口，与 `include-interface` 冲突
+  #   - "lan1"
+  
+  # 当 auto-route与auto-redirect 为true时, 若 route-exclude-address-set 非空，生成的防火墙链路略有区别
+  # 此时可在nftables下 过滤源地址
+  # nft insert rule inet mihomo prerouting ip saddr {192.168.1.1/24} return
+  # route-exclude-address-set:
+  #   - LocalAreaNetwork
+
+dns:
+  enable: true
+  ipv6: false
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  listen: 0.0.0.0:7874
+  nameserver:
+  - https://doh.pub/dns-query
+  - https://dns.alidns.com/dns-query
+  default-nameserver:
+  - 119.29.29.29
+  - 223.5.5.5
+  fake-ip-filter:
+  - "*.lan"
+  - "*.localdomain"
+  - "*.example"
+  - "*.invalid"
+  - "*.localhost"
+  - "*.test"
+  - "*.local"
+  - "*.home.arpa"
+  - time.*.com
+  - time.*.gov
+  - time.*.edu.cn
+  - time.*.apple.com
+  - time-ios.apple.com
+  - time1.*.com
+  - time2.*.com
+  - time3.*.com
+  - time4.*.com
+  - time5.*.com
+  - time6.*.com
+  - time7.*.com
+  - ntp.*.com
+  - ntp1.*.com
+  - ntp2.*.com
+  - ntp3.*.com
+  - ntp4.*.com
+  - ntp5.*.com
+  - ntp6.*.com
+  - ntp7.*.com
+  - "*.time.edu.cn"
+  - "*.ntp.org.cn"
+  - "+.pool.ntp.org"
+  - time1.cloud.tencent.com
+  - music.163.com
+  - "*.music.163.com"
+  - "*.126.net"
+  - musicapi.taihe.com
+  - music.taihe.com
+  - songsearch.kugou.com
+  - trackercdn.kugou.com
+  - "*.kuwo.cn"
+  - api-jooxtt.sanook.com
+  - api.joox.com
+  - joox.com
+  - y.qq.com
+  - "*.y.qq.com"
+  - streamoc.music.tc.qq.com
+  - mobileoc.music.tc.qq.com
+  - isure.stream.qqmusic.qq.com
+  - dl.stream.qqmusic.qq.com
+  - aqqmusic.tc.qq.com
+  - amobile.music.tc.qq.com
+  - "*.xiami.com"
+  - "*.music.migu.cn"
+  - music.migu.cn
+  - "+.msftconnecttest.com"
+  - "+.msftncsi.com"
+  - localhost.ptlogin2.qq.com
+  - localhost.sec.qq.com
+  - "+.qq.com"
+  - "+.tencent.com"
+  - "+.srv.nintendo.net"
+  - "*.n.n.srv.nintendo.net"
+  - "+.cdn.nintendo.net"
+  - "+.stun.playstation.net"
+  - xbox.*.*.microsoft.com
+  - "*.*.xboxlive.com"
+  - xbox.*.microsoft.com
+  - xnotify.xboxlive.com
+  - "+.battlenet.com.cn"
+  - "+.wotgame.cn"
+  - "+.wggames.cn"
+  - "+.wowsgame.cn"
+  - "+.wargaming.net"
+  - proxy.golang.org
+  - stun.*.*
+  - stun.*.*.*
+  - "+.stun.*.*"
+  - "+.stun.*.*.*"
+  - "+.stun.*.*.*.*"
+  - "+.stun.*.*.*.*.*"
+  - heartbeat.belkin.com
+  - "*.linksys.com"
+  - "*.linksyssmartwifi.com"
+  - "*.router.asus.com"
+  - mesu.apple.com
+  - swscan.apple.com
+  - swquery.apple.com
+  - swdownload.apple.com
+  - swcdn.apple.com
+  - swdist.apple.com
+  - lens.l.google.com
+  - stun.l.google.com
+  - na.b.g-tun.com
+  - "+.nflxvideo.net"
+  - "*.square-enix.com"
+  - "*.finalfantasyxiv.com"
+  - "*.ffxiv.com"
+  - "*.ff14.sdo.com"
+  - ff.dorado.sdo.com
+  - "*.mcdn.bilivideo.cn"
+  - "+.media.dssott.com"
+  - shark007.net
+  - Mijia Cloud
+  - "+.cmbchina.com"
+  - "+.cmbimg.com"
+  - local.adguard.org
+  - "+.sandai.net"
+  - "+.n0808.com"
+  - "+.uu.163.com"
+  - ps.res.netease.com
+  - geosite:cn
