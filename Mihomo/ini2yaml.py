@@ -186,12 +186,8 @@ if __name__ == "__main__":
     model_yaml_path = args.file
     output_path =args.output
     
-    if ini_path.startswith("http"):
-        logger.warning("Download file from internet.")
-        ini_path = download(ini_path)
-    if model_yaml_path.startswith("http"):
-        logger.warning("Download file from internet.")
-        model_yaml_path = download(model_yaml_path)
+    if ini_path.startswith("http"): ini_path = download(ini_path)
+    if model_yaml_path.startswith("http"): model_yaml_path = download(model_yaml_path)
 
     rules, rule_providers, proxy_groups = parse_ini(ini_path)
     parse_yaml(rules, rule_providers, proxy_groups, model_yaml_path, output_path)
