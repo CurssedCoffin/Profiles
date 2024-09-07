@@ -93,6 +93,8 @@ dns:
   default-nameserver:
   - 119.29.29.29
   - 223.5.5.5
+  # nameserver-policy:
+  #   "+.lan,+.in-addr.arpa": "127.0.0.1:53" # 内网主机名解析 默认dnsmasq端口53
   fake-ip-filter:
   - "*.lan"
   - "*.localdomain"
