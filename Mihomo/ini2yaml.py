@@ -59,11 +59,15 @@ def parse_ini(ini_path):
             if "http" in url:
                 ruleset_name = os.path.splitext(os.path.basename(urllib.parse.urlparse(url).path))[0]
                 rule = f"RULE-SET,{ruleset_name},{group}"
+                if not (url.endswith(".list") or url.endswith(".yml") or url.endswith(".yaml")):
+                    logger.error(f"Parse rule-provider [{ruleset_name}] error, invalid suffix for url: {url}, skip this rule")
+                    continue
                 rule_providers[ruleset_name] = {
-                    "type": "http",
+                    "type": "http", # file http
                     "interval": 86400,
                     "behavior": "classical",
-                    "format": "text",
+                    "format": "text" if url.endswith(".list") else "yaml",
+                    "path": f"rules/{ruleset_name}.list" if url.endswith(".list") else f"rules/{ruleset_name}.yaml",
                     "url": url
                 }
             else:
