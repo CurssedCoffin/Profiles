@@ -153,7 +153,7 @@ def parse_yaml(rules, rule_providers, proxy_groups, yaml_path, dst_yaml_path):
     proxy_providers = {
         "provider1": {
             "type": "http",
-            "interval": "3600",
+            "interval": 3600,
             "health-check": {
                 "enable": True,
                 "url": "https://www.gstatic.com/generate_204",
