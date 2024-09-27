@@ -53,7 +53,7 @@ dns:
   #   - https://dns.google/dns-query
   #   - https://cloudflare-dns.com/dns-query
   # nameserver-policy:
-  #   "*,+.lan,+.in-addr.arpa": "127.0.0.1:53" # 内网主机名解析 默认dnsmasq端口53
+  #   # "*,+.lan,+.in-addr.arpa": "127.0.0.1:53" # 内网主机名解析 默认dnsmasq端口53
   #   "geosite:cn,private":
   #     - https://doh.pub/dns-query
   #     - https://dns.alidns.com/dns-query
@@ -64,8 +64,8 @@ dns:
   nameserver:
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
-  nameserver-policy:
-    "*,+.lan,+.in-addr.arpa": "127.0.0.1:53" # 内网主机名解析 默认dnsmasq端口53
+  # nameserver-policy:
+  #   "*,+.lan,+.in-addr.arpa": "127.0.0.1:53" # 内网主机名解析 默认dnsmasq端口53
   fake-ip-filter:
     - '*.localdomain'
     - '*.example'
