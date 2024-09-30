@@ -39,22 +39,22 @@ dns:
   enable: true
   ipv6: false
   listen: 0.0.0.0:7874
-  default-nameserver:
-    - 119.29.29.29
-    - 223.5.5.5
+  respect-rules: true
   proxy-server-nameserver:
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
-  respect-rules: true
 
   # # redir-host模式
   # enhanced-mode: redir-host
   # nameserver:
   #   - https://dns.google/dns-query
   #   - https://cloudflare-dns.com/dns-query
+  # default-nameserver:
+  #   - 8.8.8.8
+  #   - 1.1.1.1
   # nameserver-policy:
-  #   # "*,+.lan,+.in-addr.arpa": "127.0.0.1:53" # 内网主机名解析 默认dnsmasq端口53
-  #   "geosite:cn,private":
+  #   # "*,+.lan,+.in-addr.arpa,geosite:private": "127.0.0.1:53" # 内网主机名解析 默认dnsmasq端口53，当路由端需要反向dns解析时启用
+  #   "geosite:cn":
   #     - https://doh.pub/dns-query
   #     - https://dns.alidns.com/dns-query
 
@@ -64,8 +64,11 @@ dns:
   nameserver:
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
+  default-nameserver:
+    - 119.29.29.29
+    - 223.5.5.5
   # nameserver-policy:
-  #   "*,+.lan,+.in-addr.arpa": "127.0.0.1:53" # 内网主机名解析 默认dnsmasq端口53
+  #   "*,+.lan,+.in-addr.arpa,geosite:private": "127.0.0.1:53" # 内网主机名解析 默认dnsmasq端口53，当路由端需要反向dns解析时启用
   fake-ip-filter:
     - '*.localdomain'
     - '*.example'
