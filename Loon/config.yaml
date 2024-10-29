@@ -85,7 +85,7 @@ https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/mas
 https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyMedia.list, policy=节点选择, tag=ProxyMedia, enabled=true
 https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/BilibiliHMT.list, policy=节点选择, tag=BilibiliHMT, enabled=true
 https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyGFWlist.list, policy=节点选择, tag=ProxyGFWlist, enabled=true
-https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaMax/ChinaMax.list, policy=全球直连, tag=ChinaMax, enabled=true # geosite:cn
+https://mirror.ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaMax/ChinaMax.list, policy=全球直连, tag=ChinaMax, enabled=true # geosite:cn
 
 [Host]
 
