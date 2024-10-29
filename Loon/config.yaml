@@ -28,7 +28,7 @@ internet-test-url = http://wifi.vivo.com.cn/generate_204
 test-timeout = 5
 
 # 其他
-# 下方写法表示一般 WiFi 和移动蜂窝网络下为自动分流模式 (rule), 名为 Stick 的 WiFi 下为直连模式，名为 Stick-5G 的 WiFi 下为代理模式
+# SSID 规则
 ssid-trigger = "default":RULE, "cellular":RULE, "Coffi":DIRECT
 # 解析器
 resource-parser = https://github.com/sub-store-org/Sub-Store/releases/latest/download/sub-store-parser.loon.min.js
@@ -38,7 +38,7 @@ resource-parser = https://github.com/sub-store-org/Sub-Store/releases/latest/dow
 [Remote Proxy]
 
 [Remote Filter]
-♻️ 全部节点_Filter = NameRegex, FilterKey = .*
+全部节点_Filter = NameRegex, FilterKey = .*
 香港节点_Filter = NameRegex, FilterKey = (港|HK|hk|Hong Kong|HongKong|hongkong)
 日本节点_Filter = NameRegex, FilterKey = (日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan)
 美国节点_Filter = NameRegex, FilterKey = (美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)
@@ -48,7 +48,7 @@ resource-parser = https://github.com/sub-store-org/Sub-Store/releases/latest/dow
 
 [Proxy Group]
 节点选择 = select,手动切换,香港节点,台湾节点,狮城节点,日本节点,美国节点,韩国节点,DIRECT,img-url = https://mirror.ghproxy.com/https://raw.githubusercontent.com/CurssedCoffin/Profiles/main/QuantumultX/icons/rocket.png
-手动切换 = select,♻️ 全部节点_Filter,img-url = https://mirror.ghproxy.com/https://raw.githubusercontent.com/CurssedCoffin/Profiles/main/QuantumultX/icons/rocket.png
+手动切换 = select,全部节点_Filter,img-url = https://mirror.ghproxy.com/https://raw.githubusercontent.com/CurssedCoffin/Profiles/main/QuantumultX/icons/rocket.png
 苹果服务 = select,DIRECT,节点选择,美国节点,香港节点,台湾节点,狮城节点,日本节点,韩国节点,手动切换,img-url = https://mirror.ghproxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple.png
 电报消息 = select,节点选择,狮城节点,香港节点,台湾节点,日本节点,美国节点,韩国节点,手动切换,DIRECT,img-url = https://mirror.ghproxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram.png
 香港节点 = url-test,香港节点_Filter, interval = 60, tolerance = 50,img-url = https://mirror.ghproxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
@@ -88,6 +88,7 @@ https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/mas
 https://mirror.ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaMax/ChinaMax.list, policy=全球直连, tag=ChinaMax, enabled=true # geosite:cn
 
 [Host]
+ssid:Coffi = server:system # 指定ssid使用指定dns
 
 [Rewrite]
 
