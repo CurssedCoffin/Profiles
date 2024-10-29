@@ -1,0 +1,120 @@
+#Date: 2024-10-29
+#Author: CurssedCoffin
+
+[General]
+# 运行模式
+ip-mode = ipv4-only
+disconnect-on-policy-change = true
+interface-mode = auto
+sni-sniffing = true
+
+# 绕过代理
+skip-proxy = 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12, localhost, *.local, e.crashlynatics.com
+bypass-tun = 10.0.0.0/8, 100.64.0.0/10, 127.0.0.0/8, 169.254.0.0/16, 172.16.0.0/12, 192.0.0.0/24, 192.0.2.0/24, 192.88.99.0/24, 192.168.0.0/16, 198.51.100.0/24, 203.0.113.0/24, 224.0.0.0/4, 255.255.255.255/32
+
+# DNS 服务器
+dns-server = system,119.29.29.29,223.5.5.5
+doh3-server = https://doh.pub/dns-query,https://dns.alidns.com/dns-query
+
+# Wi-Fi 访问
+mitm-on-wifi-access = false
+allow-wifi-access = true
+wifi-access-http-port = 7891
+wifi-access-socket5-port = 7890
+
+# 网络测试 URL
+proxy-test-url = http://www.gstatic.com/generate_204
+internet-test-url = http://wifi.vivo.com.cn/generate_204
+test-timeout = 5
+
+# 其他
+# 下方写法表示一般 WiFi 和移动蜂窝网络下为自动分流模式 (rule), 名为 Stick 的 WiFi 下为直连模式，名为 Stick-5G 的 WiFi 下为代理模式
+ssid-trigger = "default":RULE, "cellular":RULE, "Coffi":DIRECT
+# 解析器
+resource-parser = https://github.com/sub-store-org/Sub-Store/releases/latest/download/sub-store-parser.loon.min.js
+
+[Proxy]
+
+[Remote Proxy]
+
+[Remote Filter]
+♻️ 全部节点_Filter = NameRegex, FilterKey = .*
+香港节点_Filter = NameRegex, FilterKey = (港|HK|hk|Hong Kong|HongKong|hongkong)
+日本节点_Filter = NameRegex, FilterKey = (日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan)
+美国节点_Filter = NameRegex, FilterKey = (美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)
+台湾节点_Filter = NameRegex, FilterKey = (台|新北|彰化|TW|Taiwan)
+狮城节点_Filter = NameRegex, FilterKey = (新加坡|坡|狮城|SG|Singapore)
+韩国节点_Filter = NameRegex, FilterKey = (KR|Korea|KOR|首尔|韩|韓)
+
+[Proxy Group]
+节点选择 = select,手动切换,香港节点,台湾节点,狮城节点,日本节点,美国节点,韩国节点,DIRECT,img-url = https://mirror.ghproxy.com/https://raw.githubusercontent.com/CurssedCoffin/Profiles/main/QuantumultX/icons/rocket.png
+手动切换 = select,♻️ 全部节点_Filter,img-url = https://mirror.ghproxy.com/https://raw.githubusercontent.com/CurssedCoffin/Profiles/main/QuantumultX/icons/rocket.png
+苹果服务 = select,DIRECT,节点选择,美国节点,香港节点,台湾节点,狮城节点,日本节点,韩国节点,手动切换,img-url = https://mirror.ghproxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple.png
+电报消息 = select,节点选择,狮城节点,香港节点,台湾节点,日本节点,美国节点,韩国节点,手动切换,DIRECT,img-url = https://mirror.ghproxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram.png
+香港节点 = url-test,香港节点_Filter, interval = 60, tolerance = 50,img-url = https://mirror.ghproxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
+日本节点 = url-test,日本节点_Filter, interval = 60, tolerance = 50,img-url = https://mirror.ghproxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
+美国节点 = url-test,美国节点_Filter, interval = 60, tolerance = 50,img-url = https://mirror.ghproxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
+台湾节点 = url-test,台湾节点_Filter, interval = 60, tolerance = 50,img-url = https://mirror.ghproxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png
+狮城节点 = url-test,狮城节点_Filter, interval = 60, tolerance = 50,img-url = https://mirror.ghproxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png
+韩国节点 = url-test,韩国节点_Filter, interval = 60, tolerance = 50,img-url = https://mirror.ghproxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Korea.png
+全球直连 = select,DIRECT,节点选择,img-url = https://mirror.ghproxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Direct.png
+漏网之鱼 = select,节点选择,全球直连,香港节点,台湾节点,狮城节点,日本节点,美国节点,韩国节点,手动切换,img-url = https://mirror.ghproxy.com/https://raw.githubusercontent.com/CurssedCoffin/Profiles/main/QuantumultX/icons/fish.png
+
+[Proxy Chain]
+
+[Rule]
+GEOIP,CN,DIRECT,no-resolve
+FINAL,漏网之鱼
+
+[Remote Rule]
+https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list, policy=全球直连, tag=LocalAreaNetwork, enabled=true
+https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Apple.list, policy=苹果服务, tag=Apple, enabled=true
+https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Telegram.list, policy=电报消息, tag=Telegram, enabled=true
+https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list, policy=全球直连, tag=GoogleFCM, enabled=true
+https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCN.list, policy=全球直连, tag=GoogleCN, enabled=true
+https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/SteamCN.list, policy=全球直连, tag=SteamCN, enabled=true
+https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GameDownload.list, policy=全球直连, tag=GameDownload, enabled=true
+https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list, policy=全球直连, tag=UnBan, enabled=true
+https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list, policy=REJECT, tag=BanAD, enabled=true
+https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list, policy=REJECT, tag=BanProgramAD, enabled=true
+https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyList.list, policy=REJECT, tag=BanEasyList, enabled=true
+https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyListChina.list, policy=REJECT, tag=BanEasyListChina, enabled=true
+https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyPrivacy.list, policy=REJECT, tag=BanEasyPrivacy, enabled=true
+https://mirror.ghproxy.com/https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/AI.list, policy=节点选择, tag=AI, enabled=true
+https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaMedia.list, policy=全球直连, tag=ChinaMedia, enabled=true
+https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyMedia.list, policy=节点选择, tag=ProxyMedia, enabled=true
+https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/BilibiliHMT.list, policy=节点选择, tag=BilibiliHMT, enabled=true
+https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyGFWlist.list, policy=节点选择, tag=ProxyGFWlist, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaMax/ChinaMax.list, policy=全球直连, tag=ChinaMax, enabled=true # geosite:cn
+
+[Host]
+
+[Rewrite]
+
+[Script]
+
+[Plugin]
+# 去广告
+https://kelee.one/Tool/Loon/Plugin/BlockAdvertisers.plugin, tag=广告平台拦截器, enabled = true
+https://kelee.one/Tool/Loon/Plugin/Remove_ads_by_keli.plugin, tag=可莉广告过滤器, enabled = true
+https://kelee.one/Tool/Loon/Plugin/Zhihu_remove_ads.plugin, tag=知乎去广告, enabled = true
+https://kelee.one/Tool/Loon/Plugin/NeteaseCloudMusic_remove_ads.plugin, tag=网易云音乐去广告, enabled = true
+https://kelee.one/Tool/Loon/Plugin/Weixin_Official_Accounts_remove_ads.plugin, tag=微信公众号去广告, enabled = true
+https://kelee.one/Tool/Loon/Plugin/WexinMiniPrograms_Remove_ads.plugin, tag=微信小程序去广告, enabled = true
+https://kelee.one/Tool/Loon/Plugin/JD_remove_ads.plugin, tag=京东去广告, enabled = true
+https://kelee.one/Tool/Loon/Plugin/Taobao_remove_ads.plugin, tag=淘宝去广告, enabled = true
+
+# APP增强
+https://kelee.one/Tool/Loon/Plugin/JD_Price.plugin, tag=京东比价, enabled = true
+https://kelee.one/Tool/Loon/Plugin/TikTok_redirect.plugin, tag=TikTok解锁, enabled = true
+https://kelee.one/Tool/Loon/Plugin/AppleWeatherEnhancer.plugin, tag=Apple天气增强, enabled = true
+
+# 其他
+https://kelee.one/Tool/Loon/Plugin/Google.plugin, tag=Google重定向, enabled = true
+https://kelee.one/Tool/Loon/Plugin/Node_detection_tool.plugin, tag=节点检测工具, enabled = true
+
+[Mitm]
+hostname = 
+ca-p12 = 
+ca-passphrase = 
+skip-server-cert-verify = false
