@@ -180,6 +180,7 @@ dns:
     - +.uu.163.com
     - ps.res.netease.com
     - geosite:cn
+    - some.url # fix LOL connection issue
 
 
 external-ui: ui
