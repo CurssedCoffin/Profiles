@@ -120,7 +120,7 @@ def parse_ini(ini_path):
                     assert "http" in speedtest_url, f"invalid params for line: {line}"
                     
                     if group_type in ["url-test", "fallback"]: proxy_group["include-all"] = True
-                    if group_type in ["load-balance"]: proxy_group["strategy"] = "consistent-hashing"
+                    if group_type in ["load-balance"]: proxy_group["strategy"] = "round-robin"
                     
                     proxy_group["filter"] = proxxy_filter
                     proxy_group["url"] = speedtest_url
