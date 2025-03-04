@@ -173,8 +173,8 @@ def parse_yaml(rules, rule_providers, proxy_groups, yaml_path, dst_yaml_path):
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-i', '--ini', default="https://mirror.ghproxy.com/https://raw.githubusercontent.com/CurssedCoffin/Profiles/main/Mihomo/ACL4SSR_Online_Full_AdblockPlus.ini", help="Input ini file path or url")
-    parser.add_argument('-f', '--file', default="https://mirror.ghproxy.com/https://raw.githubusercontent.com/CurssedCoffin/Profiles/main/Mihomo/default.yaml", help="Model yaml file oath or url")
+    parser.add_argument('-i', '--ini', default="https://gh-proxy.com/https://raw.githubusercontent.com/CurssedCoffin/Profiles/main/Mihomo/ACL4SSR_Online_Full_AdblockPlus.ini", help="Input ini file path or url")
+    parser.add_argument('-f', '--file', default="https://gh-proxy.com/https://raw.githubusercontent.com/CurssedCoffin/Profiles/main/Mihomo/default.yaml", help="Model yaml file oath or url")
     parser.add_argument('-o', '--output', default="sub.yaml", help="Output yaml file oath")
     args = parser.parse_args()
     return args

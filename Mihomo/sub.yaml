@@ -196,7 +196,7 @@ dns:
 external-ui: ui
 external-ui-name: metacubexd
 external-ui-url: 
-  https://mirror.ghproxy.com/https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip
+  https://gh-proxy.com/https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip
 
 unified-delay: true # 统一延迟
 tcp-concurrent: false # TCP 并发
@@ -206,9 +206,9 @@ geodata-mode: true
 geodata-loader: standard
 geox-url:
   geoip: 
-    https://mirror.ghproxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.dat
+    https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.dat
   geosite: 
-    https://mirror.ghproxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat
+    https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat
 geo-auto-update: false # 是否自动更新 geodata
 geo-update-interval: 24 # 更新间隔，单位：小时
 
@@ -249,7 +249,7 @@ rule-providers:
     format: yaml
     path: rules/LocalAreaNetwork.yaml
     url: 
-      https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/LocalAreaNetwork.yaml
+      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/LocalAreaNetwork.yaml
   Apple:
     type: http
     interval: 86400
@@ -257,7 +257,7 @@ rule-providers:
     format: yaml
     path: rules/Apple.yaml
     url: 
-      https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Apple.yaml
+      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Apple.yaml
   Telegram:
     type: http
     interval: 86400
@@ -265,7 +265,7 @@ rule-providers:
     format: yaml
     path: rules/Telegram.yaml
     url: 
-      https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Telegram.yaml
+      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Telegram.yaml
   GoogleFCM:
     type: http
     interval: 86400
@@ -273,7 +273,7 @@ rule-providers:
     format: yaml
     path: rules/GoogleFCM.yaml
     url: 
-      https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/GoogleFCM.yaml
+      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/GoogleFCM.yaml
   GoogleCN:
     type: http
     interval: 86400
@@ -281,7 +281,7 @@ rule-providers:
     format: yaml
     path: rules/GoogleCN.yaml
     url: 
-      https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/GoogleCN.yaml
+      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/GoogleCN.yaml
   SteamCN:
     type: http
     interval: 86400
@@ -289,7 +289,7 @@ rule-providers:
     format: yaml
     path: rules/SteamCN.yaml
     url: 
-      https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/SteamCN.yaml
+      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/SteamCN.yaml
   GameDownload:
     type: http
     interval: 86400
@@ -297,7 +297,7 @@ rule-providers:
     format: yaml
     path: rules/GameDownload.yaml
     url: 
-      https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/GameDownload.yaml
+      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/GameDownload.yaml
   UnBan:
     type: http
     interval: 86400
@@ -305,7 +305,7 @@ rule-providers:
     format: yaml
     path: rules/UnBan.yaml
     url: 
-      https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/UnBan.yaml
+      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/UnBan.yaml
   BanAD:
     type: http
     interval: 86400
@@ -313,7 +313,7 @@ rule-providers:
     format: yaml
     path: rules/BanAD.yaml
     url: 
-      https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/BanAD.yaml
+      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/BanAD.yaml
   BanProgramAD:
     type: http
     interval: 86400
@@ -321,7 +321,7 @@ rule-providers:
     format: yaml
     path: rules/BanProgramAD.yaml
     url: 
-      https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/BanProgramAD.yaml
+      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/BanProgramAD.yaml
   BanEasyList:
     type: http
     interval: 86400
@@ -329,7 +329,7 @@ rule-providers:
     format: yaml
     path: rules/BanEasyList.yaml
     url: 
-      https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/BanEasyList.yaml
+      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/BanEasyList.yaml
   BanEasyListChina:
     type: http
     interval: 86400
@@ -337,7 +337,7 @@ rule-providers:
     format: yaml
     path: rules/BanEasyListChina.yaml
     url: 
-      https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/BanEasyListChina.yaml
+      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/BanEasyListChina.yaml
   BanEasyPrivacy:
     type: http
     interval: 86400
@@ -345,7 +345,7 @@ rule-providers:
     format: yaml
     path: rules/BanEasyPrivacy.yaml
     url: 
-      https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/BanEasyPrivacy.yaml
+      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/BanEasyPrivacy.yaml
   AI:
     type: http
     interval: 86400
@@ -353,7 +353,7 @@ rule-providers:
     format: text
     path: rules/AI.list
     url: 
-      https://mirror.ghproxy.com/https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/AI.list
+      https://gh-proxy.com/https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/AI.list
   OneDrive:
     type: http
     interval: 86400
@@ -361,7 +361,7 @@ rule-providers:
     format: yaml
     path: rules/OneDrive.yaml
     url: 
-      https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/OneDrive.yaml
+      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/OneDrive.yaml
   Microsoft:
     type: http
     interval: 86400
@@ -369,7 +369,7 @@ rule-providers:
     format: yaml
     path: rules/Microsoft.yaml
     url: 
-      https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Microsoft.yaml
+      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Microsoft.yaml
   Epic:
     type: http
     interval: 86400
@@ -377,7 +377,7 @@ rule-providers:
     format: yaml
     path: rules/Epic.yaml
     url: 
-      https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Epic.yaml
+      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Epic.yaml
   Origin:
     type: http
     interval: 86400
@@ -385,7 +385,7 @@ rule-providers:
     format: yaml
     path: rules/Origin.yaml
     url: 
-      https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Origin.yaml
+      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Origin.yaml
   Sony:
     type: http
     interval: 86400
@@ -393,7 +393,7 @@ rule-providers:
     format: yaml
     path: rules/Sony.yaml
     url: 
-      https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Sony.yaml
+      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Sony.yaml
   Steam:
     type: http
     interval: 86400
@@ -401,7 +401,7 @@ rule-providers:
     format: yaml
     path: rules/Steam.yaml
     url: 
-      https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Steam.yaml
+      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Steam.yaml
   Nintendo:
     type: http
     interval: 86400
@@ -409,7 +409,7 @@ rule-providers:
     format: yaml
     path: rules/Nintendo.yaml
     url: 
-      https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Nintendo.yaml
+      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Nintendo.yaml
   Xbox:
     type: http
     interval: 86400
@@ -417,7 +417,7 @@ rule-providers:
     format: text
     path: rules/Xbox.list
     url: 
-      https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Xbox.list
+      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Xbox.list
   ChinaMedia:
     type: http
     interval: 86400
@@ -425,7 +425,7 @@ rule-providers:
     format: yaml
     path: rules/ChinaMedia.yaml
     url: 
-      https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ChinaMedia.yaml
+      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ChinaMedia.yaml
   ProxyMedia:
     type: http
     interval: 86400
@@ -433,7 +433,7 @@ rule-providers:
     format: yaml
     path: rules/ProxyMedia.yaml
     url: 
-      https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyMedia.yaml
+      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyMedia.yaml
   BilibiliHMT:
     type: http
     interval: 86400
@@ -441,7 +441,7 @@ rule-providers:
     format: yaml
     path: rules/BilibiliHMT.yaml
     url: 
-      https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/BilibiliHMT.yaml
+      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/BilibiliHMT.yaml
   ProxyGFWlist:
     type: http
     interval: 86400
@@ -449,7 +449,7 @@ rule-providers:
     format: yaml
     path: rules/ProxyGFWlist.yaml
     url: 
-      https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyGFWlist.yaml
+      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyGFWlist.yaml
 proxy-groups:
   - name: 🚀 节点选择
     type: select
