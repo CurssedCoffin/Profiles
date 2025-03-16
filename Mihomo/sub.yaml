@@ -23,6 +23,33 @@ socks-port: 7894
 allow-lan: true # 允许局域网连接
 bind-address: '*' # 绑定 IP 地址，仅作用于 allow-lan 为 true，'*'表示所有地址
 
+external-ui: ui
+external-ui-name: metacubexd
+external-ui-url: "https://gh-proxy.com/https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
+
+unified-delay: true # 开启统一延迟时，会计算 RTT，以消除连接握手等带来的不同类型节点的延迟差异
+tcp-concurrent: false # TCP 并发，尝试所有dns结果，并使用最快的连接，切断其他连接
+
+# 自定义 geodata url
+geodata-mode: true
+geodata-loader: standard
+geox-url:
+  geoip: "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat"
+  geosite: "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat"
+  mmdb: "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country-lite.mmdb"
+  asn: "https://gh-proxy.com/https://github.com/xishang0128/geoip/releases/download/latest/GeoLite2-ASN.mmdb"
+geo-auto-update: false # 是否自动更新 geodata
+geo-update-interval: 24 # 更新间隔，单位：小时
+
+find-process-mode: off
+# - always, 开启，强制匹配所有进程
+# - strict, 默认，由 mihomo 判断是否开启
+# - off, 不匹配进程，推荐在路由器上使用此模式
+
+profile:
+  store-selected: true # 存储 select 选择记录
+  store-fake-ip: false # 持久化 fake-ip
+
 tun:
   enable: true
   stack: mixed # gvisor/mixed
@@ -30,9 +57,9 @@ tun:
   dns-hijack:
     - tcp://any:53
     # - any:53 # 需要劫持的 DNS
-  auto-detect-interface: true # 自动识别出口网卡
-  auto-route: false # 配置路由表
-  auto-redirect: false # 自动配置 iptables 以重定向 TCP 连接。仅支持 Linux。带有 auto-redirect 的 auto-route 现在可以在路由器上按预期工作，无需干预。
+  auto-route: false # 配置路由表 自动设置全局路由，可以自动将全局流量路由进入 tun 网卡。
+  auto-redirect: false # 仅支持 Linux，自动配置 iptables/nftables 以重定向 TCP 连接，需要auto-route已启用。带有 auto-route 的 auto-redirect 现在可以在路由器上按预期工作，无需干预。
+  auto-detect-interface: true # 自动选择流量出口接口，多出口网卡同时连接的设备建议手动指定出口网卡
 
   endpoint-independent-nat: true # 启用独立于端点的 NAT
   # include-interface: # 限制被路由的接口。默认不限制，与 `exclude-interface` 冲突
@@ -54,31 +81,36 @@ dns:
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
 
-  # # redir-host模式
-  # enhanced-mode: redir-host
-  # nameserver:
-  #   - https://dns.google/dns-query
-  #   - https://cloudflare-dns.com/dns-query
-  # default-nameserver:
-  #   - 8.8.8.8
-  #   - 1.1.1.1
-  # nameserver-policy:
-  #   # "*,+.lan,+.in-addr.arpa,geosite:private": "127.0.0.1:53" # 内网主机名解析 默认dnsmasq端口53，当路由端需要反向dns解析时启用
-  #   "geosite:cn":
-  #     - https://doh.pub/dns-query
-  #     - https://dns.alidns.com/dns-query
+  # 模式选择
+  enhanced-mode: fake-ip # redir-host, fake-ip
 
-  # fake-ip模式
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
+  # dns配置
+  nameserver-policy:
+    "geosite:private": system # 内网主机名解析 默认dnsmasq端口53，当路由端需要反向dns解析时启用
+    "geosite:cn": # 常见国内域名dns分流
+      - https://doh.pub/dns-query
+      - https://dns.alidns.com/dns-query
+  
+  # 非geosite:cn域名，使用谷歌和cloudflare的dns
   nameserver:
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
+    - https://dns.google/dns-query
+    - https://cloudflare-dns.com/dns-query
   default-nameserver:
-    - 119.29.29.29
-    - 223.5.5.5
-  # nameserver-policy:
-  #   "*,+.lan,+.in-addr.arpa,geosite:private": "127.0.0.1:53" # 内网主机名解析 默认dnsmasq端口53，当路由端需要反向dns解析时启用
+    - 8.8.8.8
+    - 1.1.1.1
+
+  # # 非geosite:cn域名，使用腾讯和阿里的dns
+  # # 当连接类型为UDP且带有域名时，会使用本地dns先解析域名，导致fake-ip模式下，应该走代理的域名被国内服务器解析一次，详见
+  # # https://github.com/MetaCubeX/mihomo/issues/1152#issuecomment-2029215573
+  # nameserver:
+  #   - https://doh.pub/dns-query
+  #   - https://dns.alidns.com/dns-query
+  # default-nameserver:
+  #   - 119.29.29.29
+  #   - 223.5.5.5
+  
+  # fake-ip模式 配置
+  fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
     - '*.localdomain'
     - '*.example'
@@ -192,55 +224,23 @@ dns:
     - geosite:cn
     - some.url # fix LOL connection issue
 
-
-external-ui: ui
-external-ui-name: metacubexd
-external-ui-url: 
-  https://gh-proxy.com/https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip
-
-unified-delay: true # 统一延迟
-tcp-concurrent: false # TCP 并发
-
-#自定义 geodata url
-geodata-mode: true
-geodata-loader: standard
-geox-url:
-  geoip: 
-    https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.dat
-  geosite: 
-    https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat
-geo-auto-update: false # 是否自动更新 geodata
-geo-update-interval: 24 # 更新间隔，单位：小时
-
-#  find-process-mode has 3 values:always, strict, off
-#  - always, 开启，强制匹配所有进程
-#  - strict, 默认，由 mihomo 判断是否开启
-#  - off, 不匹配进程，推荐在路由器上使用此模式
-find-process-mode: off
-
-profile:
-  store-selected: true # 存储 select 选择记录
-  # store-fake-ip: false # 持久化 fake-ip
-
 sniffer:
   enable: true
-  parse-pure-ip: true
   force-dns-mapping: true
+  parse-pure-ip: true
   override-destination: false
   sniff:
     HTTP:
-      ports:
-        - 80
-        - 443
+      ports: [80, 8080-8880]
       override-destination: false
     TLS:
-      ports:
-        - 443
+      ports: [443, 8443]
     QUIC:
-      ports:
-        - 443
+      ports: [443, 8443]
   skip-domain:
-    - +.push.apple.com
+    - "Mijia Cloud"
+    - "+.push.apple.com"
+
 rule-providers:
   LocalAreaNetwork:
     type: http
@@ -450,6 +450,7 @@ rule-providers:
     path: rules/ProxyGFWlist.yaml
     url: 
       https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyGFWlist.yaml
+
 proxy-groups:
   - name: 🚀 节点选择
     type: select
@@ -655,6 +656,7 @@ proxy-groups:
       - 🇺🇲 美国节点
       - 🇰🇷 韩国节点
       - 🚀 手动切换
+
 rules:
   - RULE-SET,LocalAreaNetwork,🎯 全球直连
   - RULE-SET,Apple,🍎 苹果服务
@@ -682,6 +684,6 @@ rules:
   - RULE-SET,ProxyMedia,🌍 国外媒体
   - RULE-SET,BilibiliHMT,🌍 国外媒体
   - RULE-SET,ProxyGFWlist,🚀 节点选择
-  - GEOIP,cn,🎯 全球直连,no-resolve
   - GEOSITE,cn,🎯 全球直连
+  - GEOIP,cn,🎯 全球直连 # ,no-resolve
   - MATCH,🐟 漏网之鱼
