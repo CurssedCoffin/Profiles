@@ -80,6 +80,10 @@ dns:
   proxy-server-nameserver:
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
+  direct-nameserver-follow-policy: false
+  direct-nameserver: # 用于direct出口域名解析的 DNS 服务器
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
 
   # 模式选择
   enhanced-mode: fake-ip # redir-host, fake-ip
