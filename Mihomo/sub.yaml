@@ -24,8 +24,7 @@ allow-lan: true # 允许局域网连接
 bind-address: '*' # 绑定 IP 地址，仅作用于 allow-lan 为 true，'*'表示所有地址
 
 external-ui: ui
-external-ui-name: metacubexd
-external-ui-url: "https://gh-proxy.com/https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
+external-ui-url: "https://gh-proxy.com/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
 
 unified-delay: true # 开启统一延迟时，会计算 RTT，以消除连接握手等带来的不同类型节点的延迟差异
 tcp-concurrent: false # TCP 并发，尝试所有dns结果，并使用最快的连接，切断其他连接
@@ -34,10 +33,10 @@ tcp-concurrent: false # TCP 并发，尝试所有dns结果，并使用最快的�
 geodata-mode: true
 geodata-loader: standard
 geox-url:
-  geoip: "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.dat"
+  geoip: "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat"
   geosite: "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat"
   mmdb: "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country-lite.mmdb"
-  asn: "https://gh-proxy.com/https://github.com/xishang0128/geoip/releases/download/latest/GeoLite2-ASN.mmdb"
+  asn: "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb"
 geo-auto-update: false # 是否自动更新 geodata
 geo-update-interval: 24 # 更新间隔，单位：小时
 
@@ -52,12 +51,12 @@ profile:
 
 tun:
   enable: true
-  stack: mixed # gvisor/mixed
+  stack: gvisor # gvisor/mixed
   device: Mihomo
   dns-hijack:
     - tcp://any:53
     # - any:53 # 需要劫持的 DNS
-  auto-route: false # 配置路由表 自动设置全局路由，可以自动将全局流量路由进入 tun 网卡。
+  auto-route: true # 配置路由表 自动设置全局路由，可以自动将全局流量路由进入 tun 网卡。
   auto-redirect: false # 仅支持 Linux，自动配置 iptables/nftables 以重定向 TCP 连接，需要auto-route已启用。带有 auto-route 的 auto-redirect 现在可以在路由器上按预期工作，无需干预。
   auto-detect-interface: true # 自动选择流量出口接口，多出口网卡同时连接的设备建议手动指定出口网卡
 
@@ -244,216 +243,6 @@ sniffer:
   skip-domain:
     - "Mijia Cloud"
     - "+.push.apple.com"
-
-rule-providers:
-  LocalAreaNetwork:
-    type: http
-    interval: 86400
-    behavior: classical
-    format: yaml
-    path: rules/LocalAreaNetwork.yaml
-    url: 
-      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/LocalAreaNetwork.yaml
-  Apple:
-    type: http
-    interval: 86400
-    behavior: classical
-    format: yaml
-    path: rules/Apple.yaml
-    url: 
-      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Apple.yaml
-  Telegram:
-    type: http
-    interval: 86400
-    behavior: classical
-    format: yaml
-    path: rules/Telegram.yaml
-    url: 
-      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Telegram.yaml
-  GoogleFCM:
-    type: http
-    interval: 86400
-    behavior: classical
-    format: yaml
-    path: rules/GoogleFCM.yaml
-    url: 
-      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/GoogleFCM.yaml
-  GoogleCN:
-    type: http
-    interval: 86400
-    behavior: classical
-    format: yaml
-    path: rules/GoogleCN.yaml
-    url: 
-      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/GoogleCN.yaml
-  SteamCN:
-    type: http
-    interval: 86400
-    behavior: classical
-    format: yaml
-    path: rules/SteamCN.yaml
-    url: 
-      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/SteamCN.yaml
-  GameDownload:
-    type: http
-    interval: 86400
-    behavior: classical
-    format: yaml
-    path: rules/GameDownload.yaml
-    url: 
-      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/GameDownload.yaml
-  UnBan:
-    type: http
-    interval: 86400
-    behavior: classical
-    format: yaml
-    path: rules/UnBan.yaml
-    url: 
-      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/UnBan.yaml
-  BanAD:
-    type: http
-    interval: 86400
-    behavior: classical
-    format: yaml
-    path: rules/BanAD.yaml
-    url: 
-      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/BanAD.yaml
-  BanProgramAD:
-    type: http
-    interval: 86400
-    behavior: classical
-    format: yaml
-    path: rules/BanProgramAD.yaml
-    url: 
-      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/BanProgramAD.yaml
-  BanEasyList:
-    type: http
-    interval: 86400
-    behavior: classical
-    format: yaml
-    path: rules/BanEasyList.yaml
-    url: 
-      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/BanEasyList.yaml
-  BanEasyListChina:
-    type: http
-    interval: 86400
-    behavior: classical
-    format: yaml
-    path: rules/BanEasyListChina.yaml
-    url: 
-      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/BanEasyListChina.yaml
-  BanEasyPrivacy:
-    type: http
-    interval: 86400
-    behavior: classical
-    format: yaml
-    path: rules/BanEasyPrivacy.yaml
-    url: 
-      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/BanEasyPrivacy.yaml
-  AI:
-    type: http
-    interval: 86400
-    behavior: classical
-    format: text
-    path: rules/AI.list
-    url: 
-      https://gh-proxy.com/https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/AI.list
-  OneDrive:
-    type: http
-    interval: 86400
-    behavior: classical
-    format: yaml
-    path: rules/OneDrive.yaml
-    url: 
-      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/OneDrive.yaml
-  Microsoft:
-    type: http
-    interval: 86400
-    behavior: classical
-    format: yaml
-    path: rules/Microsoft.yaml
-    url: 
-      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Microsoft.yaml
-  Epic:
-    type: http
-    interval: 86400
-    behavior: classical
-    format: yaml
-    path: rules/Epic.yaml
-    url: 
-      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Epic.yaml
-  Origin:
-    type: http
-    interval: 86400
-    behavior: classical
-    format: yaml
-    path: rules/Origin.yaml
-    url: 
-      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Origin.yaml
-  Sony:
-    type: http
-    interval: 86400
-    behavior: classical
-    format: yaml
-    path: rules/Sony.yaml
-    url: 
-      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Sony.yaml
-  Steam:
-    type: http
-    interval: 86400
-    behavior: classical
-    format: yaml
-    path: rules/Steam.yaml
-    url: 
-      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Steam.yaml
-  Nintendo:
-    type: http
-    interval: 86400
-    behavior: classical
-    format: yaml
-    path: rules/Nintendo.yaml
-    url: 
-      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Nintendo.yaml
-  Xbox:
-    type: http
-    interval: 86400
-    behavior: classical
-    format: text
-    path: rules/Xbox.list
-    url: 
-      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Xbox.list
-  ChinaMedia:
-    type: http
-    interval: 86400
-    behavior: classical
-    format: yaml
-    path: rules/ChinaMedia.yaml
-    url: 
-      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ChinaMedia.yaml
-  ProxyMedia:
-    type: http
-    interval: 86400
-    behavior: classical
-    format: yaml
-    path: rules/ProxyMedia.yaml
-    url: 
-      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyMedia.yaml
-  BilibiliHMT:
-    type: http
-    interval: 86400
-    behavior: classical
-    format: yaml
-    path: rules/BilibiliHMT.yaml
-    url: 
-      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/BilibiliHMT.yaml
-  ProxyGFWlist:
-    type: http
-    interval: 86400
-    behavior: classical
-    format: yaml
-    path: rules/ProxyGFWlist.yaml
-    url: 
-      https://gh-proxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyGFWlist.yaml
 
 proxy-groups:
   - name: 🚀 节点选择
@@ -661,33 +450,66 @@ proxy-groups:
       - 🇰🇷 韩国节点
       - 🚀 手动切换
 
+rule-providers:
+  SteamCN:
+    type: http
+    interval: 86400
+    behavior: classical
+    format: yaml
+    path: rules/SteamCN.yaml
+    url: 
+      https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/SteamCN/SteamCN.yaml
+  GameDownload:
+    type: http
+    interval: 86400
+    behavior: classical
+    format: yaml
+    path: rules/GameDownload.yaml
+    url: 
+      https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Game/GameDownloadCN/GameDownloadCN.yaml
+  AI:
+    type: http
+    interval: 86400
+    behavior: classical
+    format: text
+    path: rules/AI.list
+    url: 
+      https://gh-proxy.com/https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/AI.list
+
 rules:
-  - RULE-SET,LocalAreaNetwork,🎯 全球直连
-  - RULE-SET,Apple,🍎 苹果服务
-  - RULE-SET,Telegram,📲 电报消息
-  - RULE-SET,GoogleFCM,🎯 全球直连
-  - RULE-SET,GoogleCN,🎯 全球直连
+  # server酱
+  - DOMAIN-SUFFIX,ftqq.com,🎯 全球直连
+
+  # hf镜像
+  - DOMAIN-SUFFIX,hf-mirror.com,🎯 全球直连
+
+  # ruleset
   - RULE-SET,SteamCN,🎯 全球直连
   - RULE-SET,GameDownload,🎯 全球直连
-  - RULE-SET,UnBan,🎯 全球直连
-  - RULE-SET,BanAD,🛑 全球拦截
-  - RULE-SET,BanProgramAD,🛑 全球拦截
-  - RULE-SET,BanEasyList,🛑 全球拦截
-  - RULE-SET,BanEasyListChina,🛑 全球拦截
-  - RULE-SET,BanEasyPrivacy,🛑 全球拦截
   - RULE-SET,AI,💬 AI服务
-  - RULE-SET,OneDrive,Ⓜ️ 微软云盘
-  - RULE-SET,Microsoft,Ⓜ️ 微软服务
-  - RULE-SET,Epic,🎮 游戏平台
-  - RULE-SET,Origin,🎮 游戏平台
-  - RULE-SET,Sony,🎮 游戏平台
-  - RULE-SET,Steam,🎮 游戏平台
-  - RULE-SET,Nintendo,🎮 游戏平台
-  - RULE-SET,Xbox,🎮 游戏平台
-  - RULE-SET,ChinaMedia,🌏 国内媒体
-  - RULE-SET,ProxyMedia,🌍 国外媒体
-  - RULE-SET,BilibiliHMT,🌍 国外媒体
-  - RULE-SET,ProxyGFWlist,🚀 节点选择
+
+  # geosite
+  - GEOSITE,Private,🎯 全球直连
+  - GEOSITE,category-ads-all,🛑 全球拦截
+  - GEOSITE,Apple,🍎 苹果服务
+  - GEOSITE,GoogleFCM,🎯 全球直连
+  - GEOSITE,Github,🚀 节点选择
+  - GEOSITE,OneDrive,Ⓜ️ 微软云盘
+  - GEOSITE,Microsoft,Ⓜ️ 微软服务
+  - GEOSITE,category-ai-chat-!cn,💬 AI服务
+  - GEOSITE,Telegram,📲 电报消息
+  - GEOSITE,Google,🚀 节点选择
+  - GEOSITE,category-games@cn,🎯 全球直连
+  - GEOSITE,category-games,🎮 游戏平台
+  - GEOSITE,category-entertainment,🌍 国外媒体
+  - GEOSITE,category-entertainment-cn,🌏 国内媒体
+  - GEOSITE,geolocation-!cn,🚀 节点选择
+
+  # geoip
+  - GEOIP,Private,🎯 全球直连,no-resolve
+  - GEOIP,Telegram,📲 电报消息,no-resolve
+
+  # final
   - GEOSITE,cn,🎯 全球直连
-  - GEOIP,cn,🎯 全球直连 # ,no-resolve
+  - GEOIP,cn,🎯 全球直连
   - MATCH,🐟 漏网之鱼
