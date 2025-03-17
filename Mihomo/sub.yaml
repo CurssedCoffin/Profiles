@@ -491,16 +491,16 @@ rules:
   # geosite
   - GEOSITE,Private,🎯 全球直连
   - GEOSITE,category-ads-all,🛑 全球拦截
-  - GEOSITE,Apple,🍎 苹果服务
-  - GEOSITE,GoogleFCM,🎯 全球直连
-  - GEOSITE,Github,🚀 节点选择
-  - GEOSITE,OneDrive,Ⓜ️ 微软云盘
-  - GEOSITE,Microsoft,Ⓜ️ 微软服务
-  - GEOSITE,category-ai-chat-!cn,💬 AI服务
-  - GEOSITE,Telegram,📲 电报消息
-  - GEOSITE,Google,🚀 节点选择
   - GEOSITE,category-games@cn,🎯 全球直连
   - GEOSITE,category-games,🎮 游戏平台
+  - GEOSITE,OneDrive,Ⓜ️ 微软云盘
+  - GEOSITE,category-ai-chat-!cn,💬 AI服务
+  - GEOSITE,Telegram,📲 电报消息
+  - GEOSITE,Apple,🍎 苹果服务
+  - GEOSITE,Github,🚀 节点选择
+  - GEOSITE,GoogleFCM,🎯 全球直连
+  - GEOSITE,Microsoft,Ⓜ️ 微软服务
+  - GEOSITE,Google,🚀 节点选择
   - GEOSITE,category-entertainment,🌍 国外媒体
   - GEOSITE,category-entertainment-cn,🌏 国内媒体
   - GEOSITE,geolocation-!cn,🚀 节点选择
