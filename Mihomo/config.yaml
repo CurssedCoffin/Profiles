@@ -5,7 +5,7 @@ external-controller: 0.0.0.0:9090 # RESTful API 监听地址
 secret: '' # `Authorization:Bearer ${secret}`
 
 proxy-providers:
-  provider1:
+  provider:
     type: http
     interval: 3600
     health-check:
@@ -47,7 +47,7 @@ find-process-mode: off
 
 profile:
   store-selected: true # 存储 select 选择记录
-  store-fake-ip: false # 持久化 fake-ip
+  store-fake-ip: true # 持久化 fake-ip
 
 tun:
   enable: true
@@ -115,115 +115,9 @@ dns:
   # fake-ip模式 配置
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
-    - '*.localdomain'
-    - '*.example'
-    - '*.invalid'
-    - '*.localhost'
-    - '*.test'
-    - '*.local'
-    - '*.home.arpa'
-    - time.*.com
-    - time.*.gov
-    - time.*.edu.cn
-    - time.*.apple.com
-    - time-ios.apple.com
-    - time1.*.com
-    - time2.*.com
-    - time3.*.com
-    - time4.*.com
-    - time5.*.com
-    - time6.*.com
-    - time7.*.com
-    - ntp.*.com
-    - ntp1.*.com
-    - ntp2.*.com
-    - ntp3.*.com
-    - ntp4.*.com
-    - ntp5.*.com
-    - ntp6.*.com
-    - ntp7.*.com
-    - '*.time.edu.cn'
-    - '*.ntp.org.cn'
-    - +.pool.ntp.org
-    - time1.cloud.tencent.com
-    - music.163.com
-    - '*.music.163.com'
-    - '*.126.net'
-    - musicapi.taihe.com
-    - music.taihe.com
-    - songsearch.kugou.com
-    - trackercdn.kugou.com
-    - '*.kuwo.cn'
-    - api-jooxtt.sanook.com
-    - api.joox.com
-    - joox.com
-    - y.qq.com
-    - '*.y.qq.com'
-    - streamoc.music.tc.qq.com
-    - mobileoc.music.tc.qq.com
-    - isure.stream.qqmusic.qq.com
-    - dl.stream.qqmusic.qq.com
-    - aqqmusic.tc.qq.com
-    - amobile.music.tc.qq.com
-    - '*.xiami.com'
-    - '*.music.migu.cn'
-    - music.migu.cn
-    - +.msftconnecttest.com
-    - +.msftncsi.com
-    - localhost.ptlogin2.qq.com
-    - localhost.sec.qq.com
-    - +.qq.com
-    - +.tencent.com
-    - +.srv.nintendo.net
-    - '*.n.n.srv.nintendo.net'
-    - +.cdn.nintendo.net
-    - +.stun.playstation.net
-    - xbox.*.*.microsoft.com
-    - '*.*.xboxlive.com'
-    - xbox.*.microsoft.com
-    - xnotify.xboxlive.com
-    - +.battlenet.com.cn
-    - +.wotgame.cn
-    - +.wggames.cn
-    - +.wowsgame.cn
-    - +.wargaming.net
-    - proxy.golang.org
-    - stun.*.*
-    - stun.*.*.*
-    - +.stun.*.*
-    - +.stun.*.*.*
-    - +.stun.*.*.*.*
-    - +.stun.*.*.*.*.*
-    - heartbeat.belkin.com
-    - '*.linksys.com'
-    - '*.linksyssmartwifi.com'
-    - '*.router.asus.com'
-    - mesu.apple.com
-    - swscan.apple.com
-    - swquery.apple.com
-    - swdownload.apple.com
-    - swcdn.apple.com
-    - swdist.apple.com
-    - lens.l.google.com
-    - stun.l.google.com
-    - na.b.g-tun.com
-    - +.nflxvideo.net
-    - '*.square-enix.com'
-    - '*.finalfantasyxiv.com'
-    - '*.ffxiv.com'
-    - '*.ff14.sdo.com'
-    - ff.dorado.sdo.com
-    - '*.mcdn.bilivideo.cn'
-    - +.media.dssott.com
-    - shark007.net
-    - Mijia Cloud
-    - +.cmbchina.com
-    - +.cmbimg.com
-    - local.adguard.org
-    - +.sandai.net
-    - +.n0808.com
-    - +.uu.163.com
-    - ps.res.netease.com
+    - "+.lan"
+    - "+.local"
+    - geosite:private
     - geosite:cn
     - some.url # fix LOL connection issue
 
@@ -245,228 +139,31 @@ sniffer:
     - "+.push.apple.com"
 
 proxy-groups:
-  - name: 🚀 节点选择
-    type: select
-    proxies:
-      - ♻️ 自动选择
-      - 🔯 故障转移
-      - 🔮 负载均衡
-      - 🇭🇰 香港节点
-      - 🇨🇳 台湾节点
-      - 🇸🇬 狮城节点
-      - 🇯🇵 日本节点
-      - 🇺🇲 美国节点
-      - 🇰🇷 韩国节点
-      - 🚀 手动切换
-      - DIRECT
-  - name: 🚀 手动切换
-    type: select
-    filter: .*
-    include-all: true
-  - name: 💬 AI服务
-    type: select
-    proxies:
-      - 🇺🇲 美国节点
-      - 🚀 节点选择
-      - 🇭🇰 香港节点
-      - 🇨🇳 台湾节点
-      - 🇸🇬 狮城节点
-      - 🇯🇵 日本节点
-      - 🇰🇷 韩国节点
-      - 🚀 手动切换
-      - DIRECT
-    filter: ''
-  - name: 🎮 游戏平台
-    type: select
-    proxies:
-      - 🚀 节点选择
-      - DIRECT
-      - 🇺🇲 美国节点
-      - 🇭🇰 香港节点
-      - 🇨🇳 台湾节点
-      - 🇸🇬 狮城节点
-      - 🇯🇵 日本节点
-      - 🇰🇷 韩国节点
-      - 🚀 手动切换
-  - name: 🍎 苹果服务
-    type: select
-    proxies:
-      - DIRECT
-      - 🚀 节点选择
-      - 🇺🇲 美国节点
-      - 🇭🇰 香港节点
-      - 🇨🇳 台湾节点
-      - 🇸🇬 狮城节点
-      - 🇯🇵 日本节点
-      - 🇰🇷 韩国节点
-      - 🚀 手动切换
-  - name: 📲 电报消息
-    type: select
-    proxies:
-      - 🚀 节点选择
-      - ♻️ 自动选择
-      - 🇸🇬 狮城节点
-      - 🇭🇰 香港节点
-      - 🇨🇳 台湾节点
-      - 🇯🇵 日本节点
-      - 🇺🇲 美国节点
-      - 🇰🇷 韩国节点
-      - 🚀 手动切换
-      - DIRECT
-  - name: Ⓜ️ 微软云盘
-    type: select
-    proxies:
-      - DIRECT
-      - 🚀 节点选择
-      - 🇺🇲 美国节点
-      - 🇭🇰 香港节点
-      - 🇨🇳 台湾节点
-      - 🇸🇬 狮城节点
-      - 🇯🇵 日本节点
-      - 🇰🇷 韩国节点
-      - 🚀 手动切换
-  - name: Ⓜ️ 微软服务
-    type: select
-    proxies:
-      - DIRECT
-      - 🚀 节点选择
-      - 🇺🇲 美国节点
-      - 🇭🇰 香港节点
-      - 🇨🇳 台湾节点
-      - 🇸🇬 狮城节点
-      - 🇯🇵 日本节点
-      - 🇰🇷 韩国节点
-      - 🚀 手动切换
-  - name: 🌍 国外媒体
-    type: select
-    proxies:
-      - 🚀 节点选择
-      - ♻️ 自动选择
-      - 🇭🇰 香港节点
-      - 🇨🇳 台湾节点
-      - 🇸🇬 狮城节点
-      - 🇯🇵 日本节点
-      - 🇺🇲 美国节点
-      - 🇰🇷 韩国节点
-      - 🚀 手动切换
-      - DIRECT
-  - name: 🌏 国内媒体
-    type: select
-    proxies:
-      - DIRECT
-      - 🇭🇰 香港节点
-      - 🇨🇳 台湾节点
-      - 🇸🇬 狮城节点
-      - 🇯🇵 日本节点
-      - 🚀 手动切换
-  - name: 🎯 全球直连
-    type: select
-    proxies:
-      - DIRECT
-      - 🚀 节点选择
-      - ♻️ 自动选择
-  - name: 🛑 全球拦截
-    type: select
-    proxies:
-      - REJECT
-      - DIRECT
-  - name: 🇭🇰 香港节点
-    type: url-test
-    include-all: true
-    filter: (港|HK|hk|Hong Kong|HongKong|hongkong)
-    url: http://www.gstatic.com/generate_204
-    interval: '300'
-    tolerance: '50'
-  - name: 🇯🇵 日本节点
-    type: url-test
-    include-all: true
-    filter: (日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan)
-    url: http://www.gstatic.com/generate_204
-    interval: '300'
-    tolerance: '50'
-  - name: 🇺🇲 美国节点
-    type: url-test
-    include-all: true
-    filter: (美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)
-    url: http://www.gstatic.com/generate_204
-    interval: '300'
-    tolerance: '150'
-  - name: 🇨🇳 台湾节点
-    type: url-test
-    include-all: true
-    filter: (台|新北|彰化|TW|Taiwan)
-    url: http://www.gstatic.com/generate_204
-    interval: '300'
-    tolerance: '50'
-  - name: 🇸🇬 狮城节点
-    type: url-test
-    include-all: true
-    filter: (新加坡|坡|狮城|SG|Singapore)
-    url: http://www.gstatic.com/generate_204
-    interval: '300'
-    tolerance: '50'
-  - name: 🇰🇷 韩国节点
-    type: url-test
-    include-all: true
-    filter: (KR|Korea|KOR|首尔|韩|韓)
-    url: http://www.gstatic.com/generate_204
-    interval: '300'
-    tolerance: '50'
-  - name: ♻️ 自动选择
-    type: url-test
-    include-all: true
-    filter: .*
-    url: http://www.gstatic.com/generate_204
-    interval: '300'
-    tolerance: '50'
-  - name: 🔯 故障转移
-    type: fallback
-    include-all: true
-    filter: .*
-    url: http://www.gstatic.com/generate_204
-    interval: '300'
-    tolerance: '50'
-  - name: 🔮 负载均衡
-    type: load-balance
-    strategy: round-robin
-    filter: .*
-    url: http://www.gstatic.com/generate_204
-    interval: '300'
-    tolerance: '50'
-    include-all: true
-  - name: 🐟 漏网之鱼
-    type: select
-    proxies:
-      - 🚀 节点选择
-      - ♻️ 自动选择
-      - 🔯 故障转移
-      - 🔮 负载均衡
-      - DIRECT
-      - 🇭🇰 香港节点
-      - 🇨🇳 台湾节点
-      - 🇸🇬 狮城节点
-      - 🇯🇵 日本节点
-      - 🇺🇲 美国节点
-      - 🇰🇷 韩国节点
-      - 🚀 手动切换
+  - {name: 🚀 节点选择, type: select, proxies: [♻️ 自动选择, 🔯 故障转移, 🔮 负载均衡, 🚀 手动切换, 🎯 全球直连, 🇭🇰 香港节点, 🇨🇳 台湾节点, 🇸🇬 狮城节点, 🇯🇵 日本节点, 🇺🇲 美国节点, 🇰🇷 韩国节点, 🌎 其它节点]}
+  - {name: 🚀 手动切换, type: select, filter: ".*", include-all: true}
+  - {name: 💬 AI服务, type: select, proxies: [🇺🇲 美国节点, 🚀 节点选择, ♻️ 自动选择, 🔯 故障转移, 🔮 负载均衡, 🚀 手动切换, 🎯 全球直连, 🇭🇰 香港节点, 🇨🇳 台湾节点, 🇸🇬 狮城节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🌎 其它节点]}
+  - {name: 🎮 游戏平台, type: select, proxies: [🚀 节点选择, ♻️ 自动选择, 🔯 故障转移, 🔮 负载均衡, 🚀 手动切换, 🎯 全球直连, 🇭🇰 香港节点, 🇨🇳 台湾节点, 🇸🇬 狮城节点, 🇯🇵 日本节点, 🇺🇲 美国节点, 🇰🇷 韩国节点, 🌎 其它节点]}
+  - {name: 🍎 苹果服务, type: select, proxies: [🎯 全球直连, 🚀 节点选择, ♻️ 自动选择, 🔯 故障转移, 🔮 负载均衡, 🚀 手动切换, 🇭🇰 香港节点, 🇨🇳 台湾节点, 🇸🇬 狮城节点, 🇯🇵 日本节点, 🇺🇲 美国节点, 🇰🇷 韩国节点, 🌎 其它节点]}
+  - {name: 📲 电报消息, type: select, proxies: [🚀 节点选择, ♻️ 自动选择, 🔯 故障转移, 🔮 负载均衡, 🚀 手动切换, 🎯 全球直连, 🇭🇰 香港节点, 🇨🇳 台湾节点, 🇸🇬 狮城节点, 🇯🇵 日本节点, 🇺🇲 美国节点, 🇰🇷 韩国节点, 🌎 其它节点]}
+  - {name: Ⓜ️ 微软云盘, type: select, proxies: [🎯 全球直连, 🚀 节点选择, ♻️ 自动选择, 🔯 故障转移, 🔮 负载均衡, 🚀 手动切换, 🇭🇰 香港节点, 🇨🇳 台湾节点, 🇸🇬 狮城节点, 🇯🇵 日本节点, 🇺🇲 美国节点, 🇰🇷 韩国节点, 🌎 其它节点]}
+  - {name: Ⓜ️ 微软服务, type: select, proxies: [🎯 全球直连, 🚀 节点选择, ♻️ 自动选择, 🔯 故障转移, 🔮 负载均衡, 🚀 手动切换, 🇭🇰 香港节点, 🇨🇳 台湾节点, 🇸🇬 狮城节点, 🇯🇵 日本节点, 🇺🇲 美国节点, 🇰🇷 韩国节点, 🌎 其它节点]}
+  - {name: 🌍 国外媒体, type: select, proxies: [🚀 节点选择, ♻️ 自动选择, 🔯 故障转移, 🔮 负载均衡, 🚀 手动切换, 🎯 全球直连, 🇭🇰 香港节点, 🇨🇳 台湾节点, 🇸🇬 狮城节点, 🇯🇵 日本节点, 🇺🇲 美国节点, 🇰🇷 韩国节点, 🌎 其它节点]}
+  - {name: 🌏 国内媒体, type: select, proxies: [🎯 全球直连, 🚀 节点选择, ♻️ 自动选择, 🔯 故障转移, 🔮 负载均衡, 🚀 手动切换, 🇭🇰 香港节点, 🇨🇳 台湾节点, 🇸🇬 狮城节点, 🇯🇵 日本节点, 🇺🇲 美国节点, 🇰🇷 韩国节点, 🌎 其它节点]}
+  - {name: 🇭🇰 香港节点, type: url-test, include-all: true, filter: "(港|HK|hk|Hong Kong|HongKong|hongkong)", url: http://www.gstatic.com/generate_204, interval: 300, tolerance: 50}
+  - {name: 🇯🇵 日本节点, type: url-test, include-all: true, filter: "(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan)", url: http://www.gstatic.com/generate_204, interval: 300, tolerance: 50}
+  - {name: 🇺🇲 美国节点, type: url-test, include-all: true, filter: "(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)", url: http://www.gstatic.com/generate_204, interval: 300, tolerance: 150}
+  - {name: 🇨🇳 台湾节点, type: url-test, include-all: true, filter: "(台|新北|彰化|TW|Taiwan)", url: http://www.gstatic.com/generate_204, interval: 300, tolerance: 50}
+  - {name: 🇸🇬 狮城节点, type: url-test, include-all: true, filter: "(新加坡|坡|狮城|SG|Singapore)", url: http://www.gstatic.com/generate_204, interval: 300, tolerance: 50}
+  - {name: 🇰🇷 韩国节点, type: url-test, include-all: true, filter: "(KR|Korea|KOR|首尔|韩|韓)", url: http://www.gstatic.com/generate_204, interval: 300, tolerance: 50}
+  - {name: 🌎 其它节点, type: select, include-all: true, filter: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|港|hk|hongkong|台|tw|taiwan|日|jp|japan|新|sg|singapore|美|us|unitedstates|直连)).*"}
+  - {name: 🎯 全球直连, type: select, proxies: [DIRECT]}
+  - {name: 🛑 全球拦截, type: select, proxies: [REJECT, 🎯 全球直连]}
+  - {name: ♻️ 自动选择, type: url-test, include-all: true, filter: ".*", url: http://www.gstatic.com/generate_204, interval: 300, tolerance: 50}
+  - {name: 🔯 故障转移, type: fallback, include-all: true, filter: ".*", url: http://www.gstatic.com/generate_204, interval: 300, tolerance: 50}
+  - {name: 🔮 负载均衡, type: load-balance, strategy: round-robin, filter: ".*", url: http://www.gstatic.com/generate_204, interval: 300, tolerance: 50, include-all: true}
+  - {name: 🐟 漏网之鱼, type: select, proxies: [🚀 节点选择, ♻️ 自动选择, 🔯 故障转移, 🔮 负载均衡, 🚀 手动切换, 🎯 全球直连, 🇭🇰 香港节点, 🇨🇳 台湾节点, 🇸🇬 狮城节点, 🇯🇵 日本节点, 🇺🇲 美国节点, 🇰🇷 韩国节点, 🌎 其它节点]}
 
 rule-providers:
-  SteamCN:
-    type: http
-    interval: 86400
-    behavior: classical
-    format: yaml
-    path: rules/SteamCN.yaml
-    url: 
-      https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/SteamCN/SteamCN.yaml
-  GameDownload:
-    type: http
-    interval: 86400
-    behavior: classical
-    format: yaml
-    path: rules/GameDownload.yaml
-    url: 
-      https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Game/GameDownloadCN/GameDownloadCN.yaml
   AI:
     type: http
     interval: 86400
@@ -482,10 +179,15 @@ rules:
 
   # hf镜像
   - DOMAIN-SUFFIX,hf-mirror.com,🎯 全球直连
+  
+  # tg防转圈
+  - IP-CIDR,95.161.76.100/31,🛑 全球拦截,no-resolve
+
+  # EPIC下载 https://github.com/ACL4SSR/ACL4SSR/issues/280#issuecomment-2715297761
+  - DOMAIN, launcher-public-service-prod06.ol.epicgames.com, 🎯 全球直连
+  - DOMAIN,cloudflare.epicgamescdn.com,🎯 全球直连
 
   # ruleset
-  - RULE-SET,SteamCN,🎯 全球直连
-  - RULE-SET,GameDownload,🎯 全球直连
   - RULE-SET,AI,💬 AI服务
 
   # geosite
