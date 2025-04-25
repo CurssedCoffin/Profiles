@@ -1,5 +1,5 @@
 # Profiles
-[Mihomo](Mihomo/config.yaml) rule-ref: [ACL4SSR](https://github.com/ACL4SSR/ACL4SSR)
+[Mihomo](Mihomo/config.yaml)
 
 [QuantumultX](QuantumultX/config.conf)
 
