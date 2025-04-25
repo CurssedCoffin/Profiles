@@ -155,7 +155,7 @@ proxy-groups:
   - {name: 🇨🇳 台湾节点, type: url-test, include-all: true, filter: "(台|新北|彰化|TW|Taiwan)", url: http://www.gstatic.com/generate_204, interval: 300, tolerance: 50}
   - {name: 🇸🇬 狮城节点, type: url-test, include-all: true, filter: "(新加坡|坡|狮城|SG|Singapore)", url: http://www.gstatic.com/generate_204, interval: 300, tolerance: 50}
   - {name: 🇰🇷 韩国节点, type: url-test, include-all: true, filter: "(KR|Korea|KOR|首尔|韩|韓)", url: http://www.gstatic.com/generate_204, interval: 300, tolerance: 50}
-  - {name: 🌎 其它节点, type: select, include-all: true, filter: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|港|hk|hongkong|台|tw|taiwan|日|jp|japan|新|sg|singapore|美|us|unitedstates|直连)).*"}
+  - {name: 🌎 其它节点, type: select, include-all: true, filter: "(?i)^(?!.*(?:港|HK|hk|Hong Kong|HongKong|hongkong|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|台|新北|彰化|TW|Taiwan|新加坡|坡|狮城|SG|Singapore|KR|Korea|KOR|首尔|韩|韓)).*"}
   - {name: 🎯 全球直连, type: select, proxies: [DIRECT]}
   - {name: 🛑 全球拦截, type: select, proxies: [REJECT, 🎯 全球直连]}
   - {name: ♻️ 自动选择, type: url-test, include-all: true, filter: ".*", url: http://www.gstatic.com/generate_204, interval: 300, tolerance: 50}
