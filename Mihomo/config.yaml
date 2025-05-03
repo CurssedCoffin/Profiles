@@ -187,6 +187,9 @@ rules:
   - DOMAIN, launcher-public-service-prod06.ol.epicgames.com, 🎯 全球直连
   - DOMAIN,cloudflare.epicgamescdn.com,🎯 全球直连
 
+  # steam 登录地区 steam://open/console -> user_info  -> IPCountry
+  - DOMAIN-SUFFIX,steamserver.net,🎮 游戏平台
+
   # ruleset
   - RULE-SET,AI,💬 AI服务
 
