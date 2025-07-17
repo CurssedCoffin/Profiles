@@ -179,16 +179,18 @@ rules:
 
   # hf镜像
   - DOMAIN-SUFFIX,hf-mirror.com,🎯 全球直连
-  
+
   # tg防转圈
   - IP-CIDR,95.161.76.100/31,🛑 全球拦截,no-resolve
 
   # EPIC下载 https://github.com/ACL4SSR/ACL4SSR/issues/280#issuecomment-2715297761
   - DOMAIN, launcher-public-service-prod06.ol.epicgames.com, 🎯 全球直连
-  - DOMAIN,cloudflare.epicgamescdn.com,🎯 全球直连
-
+  
   # steam 登录地区 steam://open/console -> user_info  -> IPCountry
   - DOMAIN-SUFFIX,steamserver.net,🎮 游戏平台
+
+  # Steam 游戏下载
+  - DOMAIN-SUFFIX,steamcontent.com,🎮 游戏下载
 
   # ruleset
   - RULE-SET,AI,💬 AI服务
@@ -196,6 +198,8 @@ rules:
   # geosite
   - GEOSITE,Private,🎯 全球直连
   - GEOSITE,category-ads-all,🛑 全球拦截
+  - GEOSITE,category-game-platforms-download@cn,🎯 全球直连
+  - GEOSITE,category-game-platforms-download,🎮 游戏下载
   - GEOSITE,category-games@cn,🎯 全球直连
   - GEOSITE,category-games,🎮 游戏平台
   - GEOSITE,OneDrive,Ⓜ️ 微软云盘
